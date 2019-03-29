@@ -1,0 +1,85 @@
+#include <fstream>
+#include <vector>
+#include <cstring>
+#include <map>
+using namespace std;
+ifstream in ("input.in");
+ofstream out ("output.out");
+int nrstari,nrlit,stinit,nrfin,nrtranz,nrcuv,d[100][128];
+char cuvinte[100][100];
+map <int,int> stare;
+vector <char> litere;
+vector <int> stfin;
+
+void citire()
+{
+    int i,st,s1,s2,j;
+    char lit;
+
+    in>>nrstari;
+    for (i=0; i<nrstari; i++)
+    {
+        in>>st;
+        stare.insert(make_pair(st,i));
+    }
+
+    in>>nrlit;
+    for (i=0; i<nrlit; i++)
+    {
+        in>>lit;
+        litere.push_back(lit);
+    }
+
+    in>>stinit;
+    in>>nrfin;
+    for (i=0; i<nrfin; i++)
+    {
+        in>>st;
+        stfin.push_back(st);
+    }
+
+    for (i=0;i<nrstari;i++)
+        for (j=0;j<128;j++)
+        d[i][j]=-1;
+
+    in>>nrtranz;
+    for (i=0; i<nrtranz; i++)
+    {
+        in>>s1>>lit>>s2;
+        d[stare[s1]][lit]=s2;
+    }
+
+    in>>nrcuv;
+    for (i=0; i<nrcuv; i++)
+        in>>cuvinte[i];
+}
+void dfa()
+{
+    int i,j;
+    for (i=0; i<nrcuv; i++)
+    {
+        int ok=0;
+        int st=stinit;
+        for (j=0; j<strlen(cuvinte[i]); j++)
+        {
+            if (cuvinte[i][j]=='*')
+                continue;
+
+            st=d[stare[st]][cuvinte[i][j]];
+            if(st==-1)
+                break;
+        }
+        for (j=0; j<nrfin; j++)
+            if (st==stfin[j])
+                ok=1;
+
+        if (ok==0)
+            out<<"Incorect\n";
+        else out<<"Corect\n";
+    }
+}
+int main()
+{
+    citire();
+    dfa();
+}
