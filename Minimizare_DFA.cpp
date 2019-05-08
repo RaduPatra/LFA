@@ -130,9 +130,9 @@ void formare_mat_stari()
                 kj = 0;
                 p1 = -1;
                 p2 = -1;
-                for(ki = 0; ki < nr_stari && mat_stari[ki][0]!= -1; ki ++)
+                for(ki = 0; ki < nr_stari && mat_stari[ki][0]!= -1; ki++)
                 {
-                    for(kj = 0; kj < nr_stari && mat_stari[ki][kj]!= -1 ; kj ++)
+                    for(kj = 0; kj < nr_stari && mat_stari[ki][kj]!= -1 ; kj++)
                     {
                         if(mat_stari[ki][kj] == i)
                         {
@@ -164,8 +164,8 @@ void formare_mat_stari()
                 {
                     mat_stari[ki][0] = i;
                     mat_stari[ki][1] = j;
-                    f[i] ++;
-                    f[j] ++;
+                    f[i]++;
+                    f[j]++;
                 }
             }
         }
@@ -177,7 +177,7 @@ void formare_mat_stari()
         if(f[i] == 0)
         {
             mat_stari[ki][0] = i;
-            ki ++;
+            ki++;
         }
 
     int st_fin[100] = {0};
@@ -191,7 +191,7 @@ void formare_mat_stari()
 
     out << "Starile finale sunt: ";
     ok=0;
-    for(int i = 0; i < nr_stari && mat_stari[i][0]!= -1; i ++)
+    for(int i = 0; i < nr_stari && mat_stari[i][0]!= -1; i++)
     {
         if(st_fin[i] == 1)
         {
@@ -209,9 +209,9 @@ void minimizare()
     int i,j,ki,kj,ok=0,k;
     out<<'\n'<<"Automatul minimal este: \n";
 
-    for(i = 0; i < nr_stari; i ++)
+    for(i = 0; i < nr_stari; i++)
         for (j=0; j<p[k].size(); j++)
-            for(k = 0; k < nr_stari; k ++)
+            for(k = 0; k < nr_stari; k++)
             {
                 if (mat_stari[i][0]==k)
                 {
